@@ -10,10 +10,11 @@ import feed from './pages/feed/feed.js';
 import perfil from './pages/perfil/perfil.js';
 import novoPost from './pages/novoPost/novoPost.js';
 import infopage from './pages/infopage/infopage.js';
+import { manipularMudancaHash } from './pages/serviceFirebase/firebaseAuth.js';
 
 const main = document.getElementById('root');
 const init = () => {
-  window.addEventListener('hashchange', () => {
+  window.addEventListener('hashchange', async () => {
     // console.log(window.location.hash)
     main.innerHTML = ' ';
     switch (window.location.hash) {
@@ -27,7 +28,7 @@ const init = () => {
         main.appendChild(cadastro());
         break;
       case '#feed':
-        main.appendChild(feed());
+        main.appendChild(await feed());
         break;
       case '#perfil':
         main.appendChild(perfil());
@@ -47,6 +48,12 @@ const init = () => {
 window.addEventListener('load', () => {
   main.appendChild(home());
   init();
+});
+
+window.addEventListener('hashchange', manipularMudancaHash);
+
+window.addEventListener('click', (e) => {
+  console.log(e.target);
 });
 
 // const novaConta = document.getElementById('cadastro'); /* evento para criar nova conta */

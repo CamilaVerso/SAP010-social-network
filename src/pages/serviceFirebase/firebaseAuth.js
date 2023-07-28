@@ -3,33 +3,22 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {
-  setDoc, doc, collection, addDoc, query, getDocs,
+  collection, addDoc, query, getDocs, orderBy, deleteDoc, doc,
 } from 'firebase/firestore';
 import { app, db } from '../../firebaseInit.config.js';
 
-// GoogleAuthProvider,  signInWithPopup, updateProfile,  signOut,
-// createUserWithEmailAndPassword, import { app } from "../firebaseInit.js";
-
 export const auth = getAuth(app);
 
-// cadastro de usuarios novos
-
-const createUser = async (nome, email, senha) => {
+const createUser = async (email, senha) => {
   await createUserWithEmailAndPassword(auth, email, senha);
-  await setDoc(doc(db, 'User', email), {
-    nome,
-    email,
-  });
 };
 
-// comentei esta parte porque aindo não iremos usar
-// .then((userCredential) => {
-//   // Signed in
-//   const user = userCredential.user; // aqui atualizar o perfil do usuario
-//   return updateProfile(user, { nome });
-// });
+const atualizaPerfil = (nome) => updateProfile(auth.currentUser, {
+  displayName: nome,
+});
 
 const login = (email, senha) => signInWithEmailAndPassword(auth, email, senha);
 const addonAuthStateChanged = (callback) => onAuthStateChanged(auth, callback);
@@ -45,16 +34,31 @@ const loginGoogle = () => {
 
 // essa função nos permite ler o banco de dados
 // Fizemos com a Nury
+// const fetchData = async () => {
+//   const q = query(collection(db, 'Post'));
+//   const querySnapshot = await getDocs(q);
+//   querySnapshot.forEach((docs) => {
+//     // doc.data() is never undefined for query doc snapshots
+//     console.log(docs.id, '=>', docs.data());
+//   });
+// };
+
+// fetchData();
+
 const fetchData = async () => {
-  const q = query(collection(db, 'Post'));
+  const q = query(collection(db, 'Post'), orderBy('data', 'desc'));
   const querySnapshot = await getDocs(q);
+  console.log('querySnapshot:', querySnapshot);
+  const posts = []; // Array para armazenar os dados das postagens
+
   querySnapshot.forEach((docs) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(docs.id, '=>', docs.data());
+    const postData = docs.data();
+    posts.push(postData); // Adiciona cada postagem no array de posts
   });
-};
 
-fetchData();
+  return posts; // Retorna o array com os dados das postagens
+};
 
 const auth1 = getAuth();
 
@@ -73,12 +77,18 @@ const criarPost = async (mensagem) => {
       console.log('Usuário não autenticado');
       return;
     }
+    // estas const nos possibilita pegar a hora e o minuto que o post foi gerado
+    // const tempo = new Date('julho 27, 2023 16:42:00');
+    // const horas = tempo.toLocaleTimeString('pt-BR');
+    // para fazer dessa maneira eu teria que fazer mais linhas de código
+    // então resolvi deixar no mais simples
 
     // Dados do novo post que você deseja criar
     const novoPost = {
       mensagem,
       user_id: user.uid, // Use user.uid para obter o ID do usuário
-      likes: 0,
+      nome: user.displayName,
+      data: new Date(),
     };
 
     await addDoc(collection(db, 'Post'), novoPost);
@@ -87,13 +97,35 @@ const criarPost = async (mensagem) => {
   }
 };
 
+const verificaSeUsuarioEstaLogado = async () => {
+  const user = await getCurrentUser();
+  return !!user; // Retorna true se o usuário estiver logado, caso contrário, retorna false
+};
+
+const deletarPost = async (idPostagem) => {
+  try {
+    const referenciaDaPostagem = doc(db, 'Post', idPostagem);
+    console.log('Referência do documento a ser excluído:', referenciaDaPostagem);
+    await deleteDoc(referenciaDaPostagem);
+    console.log(idPostagem);
+    console.log('Post deletado com sucesso!');
+  } catch (error) {
+    console.log('Erro ao deletar o post:', error);
+  }
+};
+
+const manipularMudancaHash = async () => {
+  const isLoggedIn = await verificaSeUsuarioEstaLogado();
+  const newHash = window.location.hash;
+
+  if (!isLoggedIn && newHash !== '#login') {
+    // Se o usuário não estiver logado e a nova hash não for "#login",
+    // redireciona para a página de login
+    window.location.hash = '#login';
+  }
+};
+
 export {
   createUser, login, addonAuthStateChanged, loginGoogle, createUserWithEmailAndPassword, criarPost,
-  deslogar, fetchData,
+  deslogar, fetchData, getCurrentUser, atualizaPerfil, manipularMudancaHash, deletarPost,
 };
-// export const googleLogin = () => {
-//   const provider = new GoogleAuthProvider();
-//   return signInWithPopup(Auth, provider);
-// };
-
-// export const logOut = () => signOut(Auth);
