@@ -7,21 +7,24 @@ import {
 } from 'firebase/auth';
 import {
   collection, addDoc, query, getDocs, orderBy, deleteDoc, doc,
+  updateDoc,
 } from 'firebase/firestore';
 import { app, db } from '../../firebaseInit.config.js';
 
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
-const createUser = async (email, senha) => {
+const criarUsuario = async (email, senha) => {
   await createUserWithEmailAndPassword(auth, email, senha);
 };
 
-const atualizaPerfil = (nome) => updateProfile(auth.currentUser, {
-  displayName: nome,
-});
+const atualizaPerfil = (nome) => {
+  const currentUser = getAuth(app).currentUser;
+  updateProfile(currentUser, { // testar
+    displayName: nome,
+  });
+};
 
 const login = (email, senha) => signInWithEmailAndPassword(auth, email, senha);
-const addonAuthStateChanged = (callback) => onAuthStateChanged(auth, callback);
 
 const deslogar = async () => {
   await signOut(auth);
@@ -32,27 +35,13 @@ const loginGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
-// essa função nos permite ler o banco de dados
-// Fizemos com a Nury
-// const fetchData = async () => {
-//   const q = query(collection(db, 'Post'));
-//   const querySnapshot = await getDocs(q);
-//   querySnapshot.forEach((docs) => {
-//     // doc.data() is never undefined for query doc snapshots
-//     console.log(docs.id, '=>', docs.data());
-//   });
-// };
-
-// fetchData();
-
-const fetchData = async () => {
+const fetchData = async () => { // testar
   const q = query(collection(db, 'Post'), orderBy('data', 'desc'));
   const querySnapshot = await getDocs(q);
   console.log('querySnapshot:', querySnapshot);
   const posts = []; // Array para armazenar os dados das postagens
 
   querySnapshot.forEach((docs) => {
-    // doc.data() is never undefined for query doc snapshots
     const postData = docs.data();
     postData.id = docs.id; // Definir o ID do documento como a propriedade "id"
     posts.push(postData); // Adiciona cada postagem no array de posts
@@ -62,58 +51,46 @@ const fetchData = async () => {
 };
 
 const auth1 = getAuth();
-
-// Função para obter o usuário atual autenticado
-const getCurrentUser = () => new Promise((resolve, reject) => {
-  const unsubscribe = onAuthStateChanged(auth1, (user) => {
-    unsubscribe();
+const usuarioAtual = () => new Promise((resolve) => {
+  onAuthStateChanged(auth1, (user) => {
     resolve(user);
-  }, reject);
+  });
 });
 
 const criarPost = async (mensagem) => {
-  try {
-    const user = await getCurrentUser();
-    if (!user) {
-      console.log('Usuário não autenticado');
-      return;
-    }
-    // estas const nos possibilita pegar a hora e o minuto que o post foi gerado
-    // const tempo = new Date('julho 27, 2023 16:42:00');
-    // const horas = tempo.toLocaleTimeString('pt-BR');
-    // para fazer dessa maneira eu teria que fazer mais linhas de código
-    // então resolvi deixar no mais simples
+  const novoPost = {
+    mensagem,
+    user_id: getAuth().currentUser.uid,
+    nome: getAuth().currentUser.displayName,
+    data: new Date(),
+  };
 
-    // Dados do novo post que você deseja criar
-    const novoPost = {
-      mensagem,
-      user_id: user.uid, // Use user.uid para obter o ID do usuário
-      nome: user.displayName,
-      data: new Date(),
-    };
+  await addDoc(collection(db, 'Post'), novoPost);
 
-    await addDoc(collection(db, 'Post'), novoPost);
-  } catch (error) {
-    console.error('Erro ao criar o post:', error);
-  }
 };
 
-const verificaSeUsuarioEstaLogado = async () => {
-  const user = await getCurrentUser();
-  return !!user; // Retorna true se o usuário estiver logado, caso contrário, retorna false
-};
-
-const deletarPost = async (postId) => {
+const deletarPost = async (postId) => { // testar
   const docRef = doc(db, 'Post', postId);
-  console.log('este é o ', postId);
   await deleteDoc(docRef);
 };
 
-const manipularMudancaHash = async () => {
-  const isLoggedIn = await verificaSeUsuarioEstaLogado();
-  const newHash = window.location.hash;
+// const editarPost = async (postId, novaMensagem) => {
+//   const refDoc = doc(db, 'Post', postId);
+//   await updateDoc(refDoc, {
+//     mensagem: novaMensagem,
+//   });
+// };
 
-  if (!isLoggedIn && newHash !== '#login') {
+const editarPost = async (postId, novaMensagem) => {
+  const docRef = doc(db, 'Post', postId);
+  return updateDoc(docRef, novaMensagem);
+};
+
+const manipularMudancaHash = async () => { // testar
+  const estaLogado = await usuarioAtual();
+  const novaHash = window.location.hash;
+
+  if (!estaLogado && novaHash !== '#login') {
     // Se o usuário não estiver logado e a nova hash não for "#login",
     // redireciona para a página de login
     window.location.hash = '#login';
@@ -121,6 +98,8 @@ const manipularMudancaHash = async () => {
 };
 
 export {
-  createUser, login, addonAuthStateChanged, loginGoogle, createUserWithEmailAndPassword, criarPost,
-  deslogar, fetchData, getCurrentUser, atualizaPerfil, manipularMudancaHash, deletarPost,
+  criarUsuario, login,
+  loginGoogle, createUserWithEmailAndPassword, criarPost,
+  deslogar, fetchData, usuarioAtual, atualizaPerfil, manipularMudancaHash, deletarPost,
+  editarPost, auth,
 };

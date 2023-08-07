@@ -10,6 +10,7 @@
   position: relative;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
 .texto {
@@ -77,11 +78,12 @@
  @media screen and (min-width: 768px) {  /*tablet */
   .container-home {
     background-image: url(../imagens/CBDCNNCT-IMG/BGDESKTOP80.png);
+    overflow: hidden;
   }
 
   .img-CBD {
-    width: 379px;
-    height: 379px;
+    width: 280px;
+    height: 280px;
     /* left: 20%;
     top: 30%; */
     top: 30%;
@@ -92,8 +94,8 @@
     height: 109px;
     /* left: 19.5%;
     top: 55%; */
-    font-size: 30px;
-    top: 55%;
+    font-size: 25px;
+    top: 65%;
   }
   
   .container-text {
@@ -106,14 +108,51 @@
   top: calc(
     65% + 109px
   );
-    font-size: 28px;
+    font-size: 20px;
   }
 }
 
 @media screen and (min-width: 992px) { /*laptops/desktops*/
-  
+
+  .container-h1 {
+      width: 234px;
+      height: 109px;
+      /* left: 19.5%;
+      top: 55%; */
+      font-size: 25px;
+      top: 60%;
+    }
+
+  .container-text {
+      width: 500px;
+      height: 440.539px;
+      /* left: 19.5%;
+      top: calc(
+      65% + 109px
+    ); */
+      top: calc(65% + 109px);
+      font-size: 25px;
+    }
 }
 
 @media screen and (min-width: 1200px) { /*large laptops*/
-
+  .container-h1 {
+      width: 234px;
+      height: 109px;
+      /* left: 19.5%;
+        top: 55%; */
+      font-size: 30px;
+      top: 56%;
+    }
+  
+    .container-text {
+      width: 500px;
+      height: 440.539px;
+      /* left: 19.5%;
+        top: calc(
+        65% + 109px
+      ); */
+      top: calc(65% + 109px);
+      font-size: 25.5px;
+    }
 }
