@@ -8,16 +8,16 @@ import editar from '../imagens/icones/editar.png';
 import excluir from '../imagens/icones/excluir.png';
 
 import {
-  criarPost, deslogar, usuarioAtual, fetchData, deletarPost,
-  editarPost,
+  criarPost, deslogar, fetchData, deletarPost,
+  editarPost, auth,
 } from '../serviceFirebase/firebaseAuth';
 
 export default async () => {
   const containerFeed = document.createElement('section');
   containerFeed.classList.add('container-feed');
 
-  const dadosUsuarioLogado = await usuarioAtual();
-  console.log(dadosUsuarioLogado);
+  const dadosUsuarioLogado = await auth.currentUser;
+  console.log('Estes são os dados do usuário logado', dadosUsuarioLogado);
 
   // Obter o usuário logado
   // const currentUser = await usuarioAtual();

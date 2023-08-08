@@ -1,22 +1,19 @@
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 import {
-  createUserWithEmailAndPassword, getAuth, signInWithPopup, signInWithEmailAndPassword, signOut,
-  onAuthStateChanged, updateProfile,
+  createUserWithEmailAndPassword, getAuth, signInWithPopup, signInWithEmailAndPassword,
+  signOut, updateProfile,
 } from 'firebase/auth';
 import {
-  doc, updateDoc, db, collection, addDoc, deleteDoc,
+  doc, updateDoc, db, addDoc, deleteDoc, getDocs,
 } from 'firebase/firestore';
 import {
-  criarUsuario, loginGoogle, login, deslogar, editarPost, usuarioAtual, deletarPost,
-  manipularMudancaHash, atualizaPerfil, criarPost,
+  criarUsuario, loginGoogle, login, deslogar, editarPost, deletarPost, fetchData,
+  atualizaPerfil, criarPost,
 } from '../src/pages/serviceFirebase/firebaseAuth.js';
-
-import { auth } from '../src/firebaseInit.config.js';
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
-jest.mock('../src/firebaseInit.config.js');
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -101,13 +98,6 @@ describe('Editar Post', () => {
   });
 });
 
-  describe('usuarioAtual (verifica se o usuário está logado)', () => {
-    it('Deveria retornar o usuário autenticado', () => {
-      usuarioAtual();
-      expect(onAuthStateChanged).toHaveBeenCalledTimes(1);
-    });
-  });
-
 describe('deletarPost', () => {
   it('deveria ser uma função', () => {
     expect(typeof deletarPost).toBe('function');
@@ -119,83 +109,6 @@ describe('deletarPost', () => {
     expect(deleteDoc).toHaveBeenCalledTimes(1);
   });
 });
-
-describe('manipularMudancaHash ', () => {
-  it('deveria ser uma função', () => {
-    expect(typeof manipularMudancaHash).toBe('function');
-  });
-});
-
-// describe('Função criar Post', () => {
-//   it('deve criar um post e guardar na coleção', async () => {
-//     auth.currentUser = {
-//       uid: '123123456',
-//       displayName: 'Nome do usuário',
-//     };
-
-//     const post = {
-//       mensagem: 'postagem',
-//       user_id: '12345678',
-//       nome: 'username',
-//       data: '12/01/2022',
-//     };
-//     const querySnapshot = addDoc.mockResolvedValueOnce(mockUser);
-
-//     await criarPost(post.mensagem);
-//       expect(querySnapshot).toHaveBeenCalledTimes(1);
-//       expect(addDoc).toHaveBeenCalledWith(collection(db, 'Post'), post);
-//       expect(addDoc).toHaveBeenCalledTimes(1);
-//   });
-// });
-
-// describe('Função criar Post', () => {
-//   it('deve criar um post e guardar na coleção', async () => {
-//     const mockMensagem = 'teste123';
-//     const mockTimestamp = 1689688182295;
-//     const mockAddDoc = jest.fn();
-
-//     addDoc.mockResolvedValueOnce({ id: 'mockPostId' });
-
-//     auth.currentUser = {
-//       uid: '123456789',
-//       displayName: 'nomeusuario',
-//     };
-
-//     Date.getTime = jest.fn(() => mockTimestamp);
-
-//     const document = await criarPost(mockMensagem);
-//     expect(mockAddDoc).toHaveBeenCalledWith(collection(db, 'Post'), {
-//       mensagem: mockMensagem,
-//       user_id: auth.currentUser.uid,
-//       nome: auth.currentUser.displayName,
-//       data: mockTimestamp,
-//     });
-//     expect(document).toEqual({ id: 'mockPostId' });
-//  });
-// });
-
-// describe('criarPost', () => {
-//   it('deve criar um post e guardar na coleção', async () => {
-//     const mockAppAuth = {
-//       currentUser: {
-//         displayName: 'Camila Gonçalves',
-//         uid: 'bJVtk9aBSaRSuJMlXrPZCqWRbon2',
-//       },
-//     };
-//     auth.mockReturnValue(mockAppAuth);
-//     addDoc.mockResolvedValue();
-//     const mensagem = 'Nova mensagem';
-//     const novoPost = {
-//       mensagem,
-//       user_id: mockAppAuth.currentUser.uid,
-//       name: mockAppAuth.currentUser.displayName,
-//       data: new Date(),
-//     };
-//     await criarPost(mensagem);
-//     expect(addDoc).toHaveBeenCalledTimes(1);
-//     expect(addDoc).toHaveBeenCalledWith(undefined, novoPost);
-//   });
-// });
 
 describe('criarPost', () => {
   it('deve criar um post e guardar na coleção', async () => {
@@ -227,5 +140,38 @@ describe('atualizar o perfil', () => {
     expect(updateProfile).toHaveBeenCalledWith(undefined, {
       displayName: nome,
     });
+  });
+});
+
+describe('retorno dos dados do banco de dados', () => {
+  it('deve retornar as publicações e os dados do banco de dados', async () => {
+    const mockPublicacoes = [
+      {
+        id: '1',
+        Post: 'Publicação 1',
+      },
+      {
+        id: '2',
+        Post: 'Publicação 2',
+      },
+    ];
+
+    const querySnapshotMock = {
+      forEach: (callback) => {
+        mockPublicacoes.forEach((Post) => {
+          callback({
+            id: Post.id,
+            data: () => ({
+              ...Post,
+            }),
+          });
+        });
+      },
+    };
+
+    const getDocsMock = jest.fn(() => Promise.resolve(querySnapshotMock));
+    getDocs.mockImplementation(getDocsMock);
+    const result = await fetchData();
+    expect(result).toEqual(mockPublicacoes);
   });
 });

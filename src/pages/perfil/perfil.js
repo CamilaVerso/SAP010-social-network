@@ -5,12 +5,12 @@ import novoPost from '../imagens/icones/novoPost.png';
 import sair from '../imagens/icones/sair.png';
 import voltar from '../imagens/icones/voltar.png';
 import imgPerfil from '../imagens/icones/imgPerfil.png';
-import { usuarioAtual } from '../serviceFirebase/firebaseAuth';
+import { auth } from '../serviceFirebase/firebaseAuth';
 
 export default async () => {
   const containerPerfil = document.createElement('section');
   containerPerfil.classList.add('container-perfil');
-  const dados = await usuarioAtual();
+  const dados = await auth.currentUser;
   console.log(dados);
 
   const templatePerfil = `

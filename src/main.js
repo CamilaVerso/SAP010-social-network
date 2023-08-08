@@ -4,7 +4,7 @@ import cadastro from './pages/cadastro/cadastro.js';
 import feed from './pages/feed/feed.js';
 import perfil from './pages/perfil/perfil.js';
 import infopage from './pages/infopage/infopage.js';
-import { manipularMudancaHash } from './pages/serviceFirebase/firebaseAuth.js';
+import { auth } from './pages/serviceFirebase/firebaseAuth.js';
 
 const main = document.getElementById('root');
 const init = () => {
@@ -40,6 +40,15 @@ window.addEventListener('load', () => {
   main.appendChild(home());
   init();
 });
+
+const manipularMudancaHash = async () => {
+  const estaLogado = await auth.currentUser;
+  const novaHash = window.location.hash;
+
+  if (!estaLogado && novaHash !== '#login') {
+    window.location.hash = '#login';
+  }
+};
 
 window.addEventListener('hashchange', manipularMudancaHash);
 

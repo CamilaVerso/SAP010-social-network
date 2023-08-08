@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  Acesse o projeto: [aqui](inserir link)  
+  Acesse o projeto: [aqui](https://rede-social-7cc05.web.app/)  
   <br>
   <img align="center" alt="git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
   <img align="center" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
@@ -124,15 +124,13 @@ Para uma melhor experiência, foi desenvolvido um design responsivo que se adapt
 
  
 #### Interface para Mobile: 
-![Captura de tela 2023-08-02 011513](https://github.com/maristvs/SAP010-social-network/assets/131373702/ec630850-baaa-4fbe-aa46-5652d0edbd72)
+
+![mobileversion](https://github.com/maristvs/SAP010-social-network/assets/131373702/9c9a270a-f8c8-47cd-bdf3-d0733484892b)
 
 
 #### Interface para tablets e desktop: 
 
-![desktopcbdcnnct](https://github.com/maristvs/SAP010-social-network/assets/131373702/1dfe8fcf-f498-4cc3-bc13-641db217227f)
-
-![desktopcbdcnnct2-2](https://github.com/maristvs/SAP010-social-network/assets/131373702/6158bda9-a4ea-43d0-8961-96b7322fd207)
-
+![desktopversion](https://github.com/maristvs/SAP010-social-network/assets/131373702/9de49747-8002-4e8f-b081-1f5530165caa)
 
 ***
 
@@ -151,9 +149,10 @@ Para uma melhor experiência, foi desenvolvido um design responsivo que se adapt
 * [X] Testes unitários cobrem um mínimo de 70% de statements, functions, lines e branches.
 
   
-  ###  Cobertura dos testes: 
-  
- ![covertests]
+  ###  Cobertura dos testes:
+
+  ![covertests](https://github.com/maristvs/SAP010-social-network/assets/131373702/e37c3477-219c-4fde-9282-4f8d4c9d95ca)
+
   Cobertura de 100% de statements, functions, lines e branches.
 
 ## 7. Especificações Técnicas
