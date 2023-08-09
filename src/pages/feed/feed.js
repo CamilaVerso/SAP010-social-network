@@ -162,15 +162,18 @@ export default async () => {
       const elementoPost = btnEditar.closest('.novo-post');
       const mensagemDoPost = elementoPost.querySelector('.espacoBranco p').textContent;
       const novaMensagem = window.prompt(`Editar Post: ${mensagemDoPost}`);
-      editarPost(postId, novaMensagem)
-        .then(() => {
-          btnEditar.closest('.novo-post').textContent = novaMensagem;
-          alert('Publicação editada com sucesso!');
-          renderPosts();
-        })
-        .catch((error) => {
-          alert('Ocorreu um erro ao editar o post. Por favor, tente novamente mais tarde', error);
-        });
+
+      if (novaMensagem !== null) {
+        editarPost(postId, novaMensagem)
+          .then(() => {
+            btnEditar.closest('.novo-post').textContent = novaMensagem;
+            alert('Publicação editada com sucesso!');
+            renderPosts();
+          })
+          .catch((error) => {
+            alert('Ocorreu um erro ao editar o post. Por favor, tente novamente mais tarde', error);
+          });
+      }
     }
   });
 

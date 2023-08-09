@@ -1,0 +1,21 @@
+[debug] [2023-08-07T18:09:54.440Z] ----------------------------------------------------------------------
+[debug] [2023-08-07T18:09:54.442Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\diuli\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2023-08-07T18:09:54.443Z] CLI Version:   12.4.7
+[debug] [2023-08-07T18:09:54.443Z] Platform:      win32
+[debug] [2023-08-07T18:09:54.443Z] Node Version:  v18.16.1
+[debug] [2023-08-07T18:09:54.444Z] Time:          Mon Aug 07 2023 14:09:54 GMT-0400 (Horário Padrão do Amazonas)
+[debug] [2023-08-07T18:09:54.444Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-07T18:09:54.453Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-07T18:09:54.454Z] > authorizing via signed-in user (diulicarine@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\diuli\Desktop\Social Network\SAP010-social-network
+
