@@ -4,12 +4,15 @@
   
   Acesse o projeto: [aqui](https://rede-social-7cc05.web.app/)  
   <br>
-  <img align="center" alt="git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
-  <img align="center" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
-  <img align="center" alt="Rafa-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-  <img align="center" alt="Rafa-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
-  <img align="center" alt="vscode" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
-  <img align="center" alt="Figma" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" />
+  <img align="center" title="Git" alt="git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
+  <img align="center" title="HTML5" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
+  <img align="center" title="CSS3" alt="Rafa-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
+  <img align="center" title="JavaScript" alt="Rafa-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
+  <img align="center" title="VSCode" alt="vscode" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
+  <img align="center" title="Figma" alt="Figma" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" />
+  <img align="center" title="Nodejs" alt="Nodejs" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+  <img align="center" title="Jest" alt="Jest" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" />
+
   <br>
 
   Desenvolvido por: 
@@ -63,8 +66,7 @@ Acreditamos que essa rede social pode ser uma valiosa fonte de apoio e conhecime
 
 ## 3. Histórias do Usuário
 
-Pensando na experiência do usuário, desenvolvemos um produto no formato de Fanpage que permite que a experiência de consultar o elenco de personagens de forma divertida, intuitiva e prática ainda que simples. 
-  
+Pensando na experiência do usuário, desenvolvemos um produto no formato de rede social que permite o compartilhamento de experiências ou tratamento com a Cannabis Medicinal, de maneira intuitiva e prática.
  * #### História de usuário 1: Cadastro de Paciente
   Paciente deseja criar uma conta na rede social para ter acesso aos recursos e interagir com outros usuários.
  * #### Critérios de aceitação: 
