@@ -17,32 +17,22 @@ export default async () => {
   containerFeed.classList.add('container-feed');
 
   const dadosUsuarioLogado = await auth.currentUser;
-  console.log('Estes são os dados do usuário logado', dadosUsuarioLogado);
-
-  // Obter o usuário logado
-  // const currentUser = await usuarioAtual();
 
   const renderPosts = async () => {
-    console.log('Renderizando posts...');
     const posts = await fetchData();
-    console.log(posts);
 
     const containerPostsElement = containerFeed.querySelector('#containerPosts');
 
     if (!containerPostsElement) {
-      // Caso o elemento não exista, não há postagens para renderizar
       return;
     }
-    // Limpar o conteúdo do container antes de renderizar novamente as postagens
     containerPostsElement.innerHTML = '';
 
-    // Agora, iteramos pelo array de posts e criamos os elementos para renderizar as postagens
     posts.forEach((postagem) => {
       const novoPostElement = document.createElement('div');
       novoPostElement.className = 'novo-post';
-      novoPostElement.id = `post_${postagem.id}`; // Adicionar um ID único para o post
+      novoPostElement.id = `post_${postagem.id}`;
 
-      // Verificar se o usuário logado é o mesmo do usuário associado ao post
       const postUsuarioLogado = dadosUsuarioLogado && dadosUsuarioLogado.uid === postagem.user_id;
 
       const postHtml = `
@@ -63,7 +53,6 @@ export default async () => {
         </div>
       </div>
     `;
-      console.log('Id da postagem:', postagem.id);
       novoPostElement.innerHTML = postHtml;
       containerPostsElement.appendChild(novoPostElement);
     });
@@ -131,10 +120,9 @@ export default async () => {
     if (mensagem.length > 1) {
       await criarPost(mensagem, dadosUsuarioLogado.uid);
       mensagemPost.value = '';
-      await renderPosts(); // Atualizar a lista de posts após criar uma nova
+      await renderPosts();
     } else {
       erroMensagemVazia.innerHTML = 'Insira um mensagem para ser publicada';
-      console.log('mensagem vazia');
     }
   });
 
@@ -144,7 +132,6 @@ export default async () => {
     const btnEditar = target.closest('.editarPostagem');
     if (btnDeletar) {
       const postId = btnDeletar.getAttribute('data-post-id');
-      console.log('Id da postagem:', postId); // Mostra o ID da postagem no console
       if (window.confirm('Tem certeza de que deseja excluir a publicação?')) {
         deletarPost(postId)
           .then(() => {
@@ -179,7 +166,6 @@ export default async () => {
 
   btnDeslogar.addEventListener('click', async () => {
     await deslogar();
-    console.log('deslogou');
     window.location.href = '#login';
   });
 
