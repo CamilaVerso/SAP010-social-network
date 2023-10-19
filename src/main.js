@@ -7,31 +7,40 @@ import infopage from './pages/infopage/infopage.js';
 import { auth } from './pages/serviceFirebase/firebaseAuth.js';
 
 const main = document.getElementById('root');
+
 const init = () => {
   window.addEventListener('hashchange', async () => {
-    // console.log(window.location.hash)
-    main.innerHTML = ' ';
-    switch (window.location.hash) {
-      case '#home':
-        main.appendChild(home());
-        break;
-      case '#login':
-        main.appendChild(login());
-        break;
-      case '#cadastro':
-        main.appendChild(cadastro());
-        break;
-      case '#feed':
-        main.appendChild(await feed());
-        break;
-      case '#perfil':
-        main.appendChild(await perfil());
-        break;
-      case '#infopage':
-        main.appendChild(infopage());
-        break;
-      default:
-        main.appendChild(home());
+    main.innerHTML = '';
+    const novaHash = window.location.hash;
+
+    const estaLogado = await auth.currentUser;
+
+    if ((novaHash !== '#feed' && novaHash !== '#perfil') || estaLogado || novaHash === '#login') {
+      switch (novaHash) {
+        case '#home':
+          main.appendChild(home());
+          break;
+        case '#login':
+          main.appendChild(login());
+          break;
+        case '#cadastro':
+          main.appendChild(cadastro());
+          break;
+        case '#feed':
+          main.appendChild(await feed());
+          break;
+        case '#perfil':
+          main.appendChild(await perfil());
+          break;
+        case '#infopage':
+          main.appendChild(infopage());
+          break;
+        default:
+          main.appendChild(home());
+          break;
+      }
+    } else {
+      window.location.hash = '#login';
     }
   });
 };
@@ -39,19 +48,4 @@ const init = () => {
 window.addEventListener('load', () => {
   main.appendChild(home());
   init();
-});
-
-const manipularMudancaHash = async () => {
-  const estaLogado = await auth.currentUser;
-  const novaHash = window.location.hash;
-
-  if (!estaLogado && novaHash !== '#login') {
-    window.location.hash = '#login';
-  }
-};
-
-window.addEventListener('hashchange', manipularMudancaHash);
-
-window.addEventListener('click', (e) => {
-  console.log(e.target);
 });
