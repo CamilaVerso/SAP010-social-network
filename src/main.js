@@ -12,7 +12,6 @@ const init = () => {
   window.addEventListener('hashchange', async () => {
     main.innerHTML = '';
     const novaHash = window.location.hash;
-
     const estaLogado = await auth.currentUser;
 
     if ((novaHash !== '#feed' && novaHash !== '#perfil') || estaLogado || novaHash === '#login') {

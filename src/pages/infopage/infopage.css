@@ -19,12 +19,6 @@
     margin-left: 4%;
 }
 
-/* .linkedin { */
-    /* imagens do linkedin e github */
-    /* width: 16px;
-    height: 16px;
-} */
-
 .info-devs {
     display: flex;
     flex-direction: column;
@@ -41,6 +35,7 @@ a {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    padding: 2px;
 }
 
 .dev-info {
@@ -67,7 +62,6 @@ a {
 }
 
 .linkedin {
-    /* imagens do linkedin e github */
     width: 18px;
     height: 18px;
 }
@@ -81,8 +75,6 @@ a {
 .info p {
     margin-right: 6px;
     font-weight: 600;
-    /* font-size: 12px; */
-
 }
 
 
@@ -94,13 +86,13 @@ a {
 
     .texto2,
     a {
-        font-size: 15px;
+        font-size: 18px;
         text-align: center;
         font-weight: 600;
     }
 
     .espaco {
-        margin: 4px 0 6px 0;
+        margin: 40px 0 6px 0;
     }
 
     .info p {
@@ -137,7 +129,6 @@ a {
         text-align: center;
         font-weight: 800;
         margin-bottom: 3px;
-
     }
 
     .espaco {
@@ -148,18 +139,16 @@ a {
         font-size: 22px;
         margin-right: 15px;
     }
-
 }
 
 @media screen and (min-width: 1200px) {
 
     .texto2,
     a {
-        font-size: 18px;
+        font-size: 22px;
         text-align: center;
         font-weight: 800;
         margin-bottom: 3px;
-
     }
 
     .info-devs {
@@ -168,7 +157,6 @@ a {
     }
 
     .linkedin {
-        /* imagens do linkedin e github */
         width: 30px;
         height: 30px;
     }
@@ -178,7 +166,7 @@ a {
     }
 
     .info p {
-        font-size: 17px;
+        font-size: 22px;
         margin-right: 15px;
     }
 }

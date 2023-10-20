@@ -31,16 +31,16 @@
   top: 17%;
   left: 50%;
   transform: translate(-50%, -50%);
-  flex-shrink: 0; /* Alterei para flex-shrink: 0 para evitar encolhimento */
+  flex-shrink: 0;
 }
 
 .container-h1 {
   width: 234px;
   height: 109px;
-  display: flex; /* Adicionado display: flex para alinhar o h1 verticalmente */
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Adicionado align-items: center para alinhar o h1 horizontalmente */
+  align-items: center;
   position: fixed;
   top: 40%;
   left: 50%;
@@ -56,10 +56,12 @@
   align-items: center;
   position: fixed;
   top: calc(
-    55% + 109px
-  ); /* Posiciona o container-text abaixo do container-h1 */
+    55% + 95px
+  );
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 18px;
+  padding: 10px;
 }
 
  .seta {
@@ -71,11 +73,10 @@
   right: 13%;
   cursor: pointer;
   text-decoration: none;
-  /* position: fixed; */
 } 
 
 
- @media screen and (min-width: 768px) {  /*tablet */
+ @media screen and (min-width: 768px) { 
   .container-home {
     background-image: url(../imagens/CBDCNNCT-IMG/BGDESKTOP80.png);
     overflow: hidden;
@@ -84,41 +85,31 @@
   .img-CBD {
     width: 280px;
     height: 280px;
-    /* left: 20%;
-    top: 30%; */
     top: 30%;
   }
  
   .container-h1 {
     width: 234px;
     height: 109px;
-    /* left: 19.5%;
-    top: 55%; */
     font-size: 25px;
-    top: 65%;
+    top: 58%;
   }
   
   .container-text {
     width: 500px;
     height: 440.539px;
-    /* left: 19.5%;
     top: calc(
     65% + 109px
-  ); */
-  top: calc(
-    65% + 109px
   );
-    font-size: 20px;
+    font-size: 22px;
   }
 }
 
-@media screen and (min-width: 992px) { /*laptops/desktops*/
+@media screen and (min-width: 992px) { 
 
   .container-h1 {
       width: 234px;
       height: 109px;
-      /* left: 19.5%;
-      top: 55%; */
       font-size: 25px;
       top: 60%;
     }
@@ -126,21 +117,15 @@
   .container-text {
       width: 500px;
       height: 440.539px;
-      /* left: 19.5%;
-      top: calc(
-      65% + 109px
-    ); */
       top: calc(65% + 109px);
       font-size: 25px;
     }
 }
 
-@media screen and (min-width: 1200px) { /*large laptops*/
+@media screen and (min-width: 1200px) {
   .container-h1 {
       width: 234px;
       height: 109px;
-      /* left: 19.5%;
-        top: 55%; */
       font-size: 30px;
       top: 56%;
     }
@@ -148,11 +133,7 @@
     .container-text {
       width: 500px;
       height: 440.539px;
-      /* left: 19.5%;
-        top: calc(
-        65% + 109px
-      ); */
       top: calc(65% + 109px);
-      font-size: 25.5px;
+      font-size: 22px;
     }
 }
