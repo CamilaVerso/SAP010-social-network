@@ -3,7 +3,7 @@
  	overflow-x: hidden;
  }
 
- .header {
+ .superior {
  	display: flex;
  	justify-content: space-around;
  	text-align: center;
@@ -21,11 +21,12 @@
  	display: inline-block;
  	white-space: nowrap;
  	margin-left: 15px;
+ 	text-decoration: none;
  }
 
- .img-loguinho {
+ /* .img-loguinho {
  	margin-right: 10px;
- }
+ } */
 
  .containerPostVerde {
  	width: 280px;
@@ -36,6 +37,7 @@
  	background: #CCDFD4;
  	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
  	margin-top: 15%;
+ 	overflow: hidden;
  }
 
  .nomeTipo {
@@ -81,6 +83,7 @@
  	background: #EEF4F0;
  	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
  	cursor: pointer;
+ 	margin-bottom: 2px;
 
  }
 
@@ -134,7 +137,7 @@
  }
 
  @media screen and (min-width: 768px) {
- 	.header {
+ 	.superior {
  		background-color: #3B5A2B;
  		justify-content: space-between;
  		padding: 2%;
@@ -145,13 +148,11 @@
  		background-repeat: no-repeat;
  		width: 100vw;
  		height: 100vh;
- 		/* position: relative; */
  		background-size: cover;
  		background-position: center;
  		background-attachment: fixed;
- 		/* Fixa a imagem de background */
  		overflow-y: auto;
- 		/* margin-top: 10vh; */
+
  	}
 
  	.img-loguinho {
@@ -166,10 +167,10 @@
  		margin-right: auto;
  		margin-top: 6vh;
  		overflow: hidden;
-		padding-bottom: 1px;
+ 		padding-bottom: 1px;
  	}
 
-	
+
  	.text-area,
  	.espacoBranco {
  		width: 70vw;
@@ -177,9 +178,11 @@
  		overflow-y: hidden;
 
  	}
-	.botoes{
-		margin:0;
-	}
+
+ 	.botoes {
+ 		margin: 0;
+ 	}
+
  	.nome-usuario {
  		color: #F6F2E2;
  		margin-top: 1.5vw;
@@ -192,7 +195,7 @@
  		justify-content: space-between;
  		margin-left: 5%;
  	}
-	
+
  	.footer {
  		display: flex;
  		flex-direction: column;

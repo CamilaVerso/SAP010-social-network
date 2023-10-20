@@ -8,38 +8,33 @@ export default () => {
   containerCadastro.classList.add('container-cadastro');
 
   const templateCadastro = `
-
   <figure><img class="img-CBD1" src=${CBD} alt="logo app" title="Logo CBD Connection"></figure>
   <div class="container">
-  <nav>
-  <a href="#login" id="retornaLogin" class="texto1 centro">Já possuo uma conta</a>
-  </nav>
-  <form>
-  <input type="text" id="nome" class="input centro" placeholder="NOME" required>
-  <span class="erro" id="erro-nome"></span>
+    <nav>
+      <a href="#login" id="retornaLogin" class="texto1 centro">Já possuo uma conta</a>
+    </nav>
+    <form>
+      <input type="text" id="nome" class="input centro" placeholder="NOME" required>
+      <span class="erro" id="erro-nome"></span>
 
-  <input type="email" id="email" class="input centro" placeholder="E-MAIL" required> 
-  <span class="erro" id="erro-email"></span>
+      <input type="email" id="email" class="input centro" placeholder="E-MAIL" required>
+      <span class="erro" id="erro-email"></span>
 
-  <input type="password" id="senha" class="input centro" placeholder="SENHA" required>
-  <span class="erro" id="erro-senha"></span>
+      <input type="password" id="senha" class="input centro" placeholder="SENHA" required>
+      <span class="erro" id="erro-senha"></span>
 
-  <input type="password" id="confirmarSenha" class="input centro" placeholder="CONFIRMAR SENHA" required>
-  <span class="erro" id="erro-confirmarsenha"></span>
-  <p class="erro" id="erro-cadastro"></p>
+      <input type="password" id="confirmarSenha" class="input centro" placeholder="CONFIRMAR SENHA" required>
+      <span class="erro" id="erro-confirmarsenha"></span>
+      <p class="erro" id="erro-cadastro"></p>
 
-  <input type="radio" id="paciente" class="opção" name="opcaoPerfil" value="paciente" checked >SOU PACIENTE
-  <input type="radio" id="prescritor" class="opção" name="opcaoPerfil" value="prescritor">SOU PRESCRITOR
+      <input type="radio" id="paciente" class="opção" name="opcaoPerfil" value="paciente" checked>SOU PACIENTE
+      <input type="radio" id="prescritor" class="opção" name="opcaoPerfil" value="prescritor">SOU PRESCRITOR
 
-  
+      <button type="submit" id="btnCriar" class="entrar centro">CRIAR CONTA</button>
 
-  <button type="submit" id="btnCriar" class="entrar centro" >CRIAR CONTA</button>
-  
-  </form>
+    </form>
   </div>
-
-  
-  `;
+`;
 
   containerCadastro.innerHTML = templateCadastro;
 
@@ -111,7 +106,6 @@ export default () => {
     criarUsuario(nome.value, email.value, senha.value)
       .then(() => {
         atualizaPerfil(nome.value);
-        // usuário cadastrado com sucesso
         window.location.href = '/#perfil';
       })
       .catch((error) => {
@@ -119,7 +113,6 @@ export default () => {
           mensagemErro.innerHTML = 'Este e-mail já foi utilizado';
         } else {
           mensagemErro.innerHTML = 'Usuário não cadastrado';
-          console.log(error);
         }
       });
   });
