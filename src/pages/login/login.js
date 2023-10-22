@@ -8,7 +8,9 @@ export default () => {
   containerLogin.classList.add('container-login');
 
   const templateLogin = `
-  <img class="img-CBD1" src=${CBD} alt="logo app">
+  <a href="#home">
+    <img class="img-CBD1" src=${CBD} alt="logo app">
+  </a>
   <div class="container">
   <form class="form-entrar">
   <input class="input centro" type="email" name="email" id="email" placeholder="E-MAIL" >

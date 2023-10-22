@@ -1,7 +1,6 @@
 import './feed.css';
 import loguinho from '../imagens/CBDCNNCT-IMG/logologuinhamobilefeed.png';
 import perfil from '../imagens/icones/perfil.png';
-import novoPost from '../imagens/icones/novoPost.png';
 import sair from '../imagens/icones/sair.png';
 import editar from '../imagens/icones/editar.png';
 import excluir from '../imagens/icones/excluir.png';
@@ -76,21 +75,18 @@ export default async () => {
   const templateFeed = `
   <header class='superior'>
     <nav>
-      <a href="#perfil" id="feed" class="nome-usuario">${dadosUsuarioLogado.displayName}</a>
-    </nav>
-    <figure>
-      <a href="#infopage"><img id="ir-infopage" class="img-loguinho" src=${loguinho} alt="Logo app" title="Logo CBD Connection">
+      <a href="#perfil" id="feed" class="nome-usuario">${dadosUsuarioLogado.displayName}
       </a>
-    </figure>
+    </nav>
+    <img id="ir-infopage" class="img-loguinho" src=${loguinho} alt="Logo app" title="Logo CBD Connection">
+    
+    
   </header>
     ${containerPublicacaoPost}
     <div id="containerPosts" class="containerVerdeFeed">
     </div>
     <footer class="footer">
-      <a href="#perfil" id="iconePerfil"><img class="iconesFooter" src=${perfil} alt="icone perfil"
-          title="Ícone Perfil"></a>
-      <a href="#novoPost" id="iconeNovoPost"><img class="iconesFooter" src=${novoPost} alt="icone criar nova postagem"
-          title="Ícone para Nova Postagem"></a>
+      <a href="#perfil" id="iconePerfil"><img class="iconesFooter" src=${perfil} alt="icone perfil" title="Ícone Perfil"></a>
       <img class="iconesFooter" id="iconeSair" src=${sair} alt="icone sair" title="Ícone para Deslogar">
     </footer>
 `;

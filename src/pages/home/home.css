@@ -85,7 +85,7 @@
   .img-CBD {
     width: 280px;
     height: 280px;
-    top: 30%;
+    top: 28%;
   }
  
   .container-h1 {
@@ -99,9 +99,9 @@
     width: 500px;
     height: 440.539px;
     top: calc(
-    65% + 109px
+    61% + 109px
   );
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -111,14 +111,14 @@
       width: 234px;
       height: 109px;
       font-size: 25px;
-      top: 60%;
+      top: 58%;
     }
 
   .container-text {
       width: 500px;
       height: 440.539px;
-      top: calc(65% + 109px);
-      font-size: 25px;
+      top: calc(61% + 109px);
+      font-size: 22px;
     }
 }
 
