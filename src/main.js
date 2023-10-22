@@ -3,7 +3,6 @@ import home from './pages/home/home.js';
 import cadastro from './pages/cadastro/cadastro.js';
 import feed from './pages/feed/feed.js';
 import perfil from './pages/perfil/perfil.js';
-import infopage from './pages/infopage/infopage.js';
 import { auth } from './pages/serviceFirebase/firebaseAuth.js';
 
 const main = document.getElementById('root');
@@ -30,9 +29,6 @@ const init = () => {
           break;
         case '#perfil':
           main.appendChild(await perfil());
-          break;
-        case '#infopage':
-          main.appendChild(infopage());
           break;
         default:
           main.appendChild(home());

@@ -8,7 +8,9 @@ export default () => {
   containerCadastro.classList.add('container-cadastro');
 
   const templateCadastro = `
-  <figure><img class="img-CBD1" src=${CBD} alt="logo app" title="Logo CBD Connection"></figure>
+  
+    <a href="#home"><img class="img-CBD1" src=${CBD} alt="logo app" title="Logo CBD Connection"></a>
+  
   <div class="container">
     <nav>
       <a href="#login" id="retornaLogin" class="texto1 centro">Já possuo uma conta</a>
@@ -33,6 +35,7 @@ export default () => {
       <button type="submit" id="btnCriar" class="entrar centro">CRIAR CONTA</button>
 
     </form>
+    
   </div>
 `;
 
