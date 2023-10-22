@@ -118,21 +118,24 @@ Utilizamos a ferramenta Git Projects para o planejamento da logística, bem como
 ## 5. Interface Responsiva
 
  Para elaborar o design de nossa rede social, utilizamos o Figma para criar os protótipos de usabilidade e alta fidelidade, de modo que pudéssemos compartilhar com um grupo seleto e entender melhor as preferências do usuário. 
-*imagens*
+
 Desta forma criamos o protótipo de alta fidelidade no Figma onde definimos quais seriam as cores e imagens utilizadas bem como a escolha visual dos elementos. Todo o design foi pensado na experiência do usuário, buscando que este tenha a sensação de imersão no tema, desde a escolha da logo até a paleta de cores utilizada. 
-*imagens*
+
 
 Para uma melhor experiência, foi desenvolvido um design responsivo que se adapta a diversos tipos de tela de diferentes dispositivos, sejam eles mobile ou desktop. 
 
- 
-#### Interface para Mobile: 
+#### Interface para tablets e desktop: 
 
 ![mobileversion](https://github.com/maristvs/SAP010-social-network/assets/131373702/9c9a270a-f8c8-47cd-bdf3-d0733484892b)
 
 
-#### Interface para tablets e desktop: 
+#### Interface para Mobile: 
 
 ![desktopversion](https://github.com/maristvs/SAP010-social-network/assets/131373702/9de49747-8002-4e8f-b081-1f5530165caa)
+
+Na versão final foram retiradas as páginas de criar nova postagem e a infopage.
+A funcionalidade de criar uma nova postagem foi incluída na página de feed, já a infopage, estavámos tendo problemas com a responsividade então decidimos por retirá-la.
+Incluímos a página de perfil para uma próxima versão ela ter a funcionalidade de edição.
 
 ***
 
