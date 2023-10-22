@@ -24,10 +24,6 @@
  	text-decoration: none;
  }
 
- /* .img-loguinho {
- 	margin-right: 10px;
- } */
-
  .containerPostVerde {
  	width: 280px;
  	height: 200px;
@@ -63,8 +59,11 @@
 
  .actionBtnPost {
  	display: flex;
- 	justify-content: space-between;
- 	margin: 0 2%;
+ 	justify-content: flex-end;
+ 	margin: 0 6%;
+ }
+ .editarPostagem{
+	margin-right: 5px;
  }
 
  .botoes {
@@ -191,8 +190,6 @@
  	}
 
  	.actionBtnPost {
- 		display: flex;
- 		justify-content: space-between;
  		margin-left: 5%;
  	}
 
